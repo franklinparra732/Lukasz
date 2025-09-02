@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Pookie Wookie Bear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+        }
+        /* Partículas flotantes */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+            animation: float 15s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            z-index: 10;
+        }
+        /* TARJETA CON IMAGEN DE FONDO NÍTIDA Y BRILLANTE */
+        .card {
+            position: relative;
+            width: 100%;
+            /* Imagen directa sin capas oscuras */
+            background: url('https://raw.githubusercontent.com/Franklin732/ImagenL/main/imagen1.png') center/cover no-repeat;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: cardGlow 4s ease-in-out infinite alternate;
+            color: #ffffff;
+            /* Hacer que la imagen se vea más nítida y viva */
+            filter: brightness(1.05) contrast(1.05);
+        }
+        @keyframes cardGlow {
+            0% { box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 20px rgba(255,182,193,0.2); }
+            100% { box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 30px rgba(255,182,193,0.6); }
+        }
+        h1 {
+            color: #ffffff;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out, titleFlame 2s ease-in-out infinite;
+            text-shadow: none;
+        }
+        @keyframes titleFlame {
+            0% { color: #ffffff; text-shadow: 0 0 5px #ffafcc, 0 0 10px #ffb6c1, 0 0 15px #ffdab9; }
+            25% { color: #ffe6f0; text-shadow: 0 0 10px #ffafcc, 0 0 20px #ffb6c1, 0 0 25px #ffdab9, 0 0 30px #ffcba4; }
+            50% { color: #ffd1e0; text-shadow: 0 0 15px #ffafcc, 0 0 25px #ffb6c1, 0 0 30px #ffdab9, 0 0 35px #ffcba4, 0 0 40px #ffafcc; }
+            75% { color: #ffe6f0; text-shadow: 0 0 10px #ffafcc, 0 0 20px #ffb6c1, 0 0 25px #ffdab9, 0 0 30px #ffcba4; }
+            100% { color: #ffffff; text-shadow: 0 0 5px #ffafcc, 0 0 10px #ffb6c1, 0 0 15px #ffdab9; }
+        }
+        .song-title, .audio-player {
+            display: none !important;
+        }
+        .footer {
+            color: #ecf0f1;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .news-ticker-container {
+            margin-top: 15px;
+            padding: 10px 0;
+            display: none;
+        }
+        .news-ticker {
+            font-style: italic;
+            color: #ffafcc;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+            min-height: 1.5em;
+            opacity: 0;
+            animation: fadeInOut 6s forwards;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+        .birthday-hat {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(30px, 6vw, 80px);
+            animation: bounce 2s infinite alternate;
+        }
+        @keyframes bounce {
+            0% { transform: translateX(-50%) translateY(0); }
+            100% { transform: translateX(-50%) translateY(-15px); }
+        }
+        .heart-container {
+            position: relative;
+            height: 200px;
+            margin: 30px 0;
+        }
+        .bear {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(40px, 8vw, 80px);
+            z-index: 10;
+            animation: spin 4s linear infinite paused;
+        }
+        .bear.spinning {
+            animation-play-state: running;
+        }
+        @keyframes spin {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+        .heart {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(30px, 6vw, 50px);
+            color: #e74c3c;
+            opacity: 0;
+            z-index: 5;
+        }
+        .heart.shoot {
+            animation: shootHeart 3s ease-out forwards;
+        }
+        @keyframes shootHeart {
+            0% { bottom: 60px; opacity: 0; transform: translateX(-50%) scale(0.5); }
+            20% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+            100% { bottom: 300px; opacity: 0; transform: translateX(-50%) scale(0.2); }
+        }
+        .birthday-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            width: 90%;
+            max-width: 600px;
+            z-index: 20;
+        }
+        .birthday-message.show {
+            animation: showMessage 2s ease-out forwards;
+        }
+        @keyframes showMessage {
+            0% { opacity: 0; transform: translate(-50%, -40%) scale(0.8); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        .message-content, .signature {
+            animation: titleFlame 2s ease-in-out infinite;
+            background: transparent;
+        }
+        .message-content {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .signature {
+            margin-top: 20px;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            font-weight: bold;
+            font-size: 1rem;
+            text-align: right;
+            font-style: italic;
+            opacity: 0;
+        }
+        .signature.show {
+            animation: fadeInSignature 1s ease-out forwards 0.5s;
+        }
+        @keyframes fadeInSignature {
+            to { opacity: 1; }
+        }
+        .falling-heart {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            z-index: 5;
+            pointer-events: none;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        /* PASTEL RESPONSIVE */
+        .cake-container {
+            position: relative;
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+        }
+        .cake-base {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(60px, 15vw, 120px);
+        }
+        .candles-group {
+            position: absolute;
+            top: -15%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+            z-index: 2;
+        }
+
+        /* GRID RESPONSIVE CON TAMAÑO MÍNIMO */
+        .digit-2, .digit-4 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            width: 40px;
+            height: 70px;
+            gap: 2px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .candles-group {
+                gap: 15px;
+            }
+            .digit-2, .digit-4 {
+                width: 30px;
+                height: 50px;
+                gap: 1px;
+            }
+        }
+
+        /* VELAS */
+        .candle {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-width: 6px;
+            min-height: 15px;
+            background: linear-gradient(to right, #f1c40f, #e67e22, #d35400);
+            border-radius: 4px 4px 0 0;
+            z-index: 2;
+        }
+        .wick {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20%;
+            height: 15%;
+            background-color: #7f8c8d;
+            z-index: 3;
+        }
+        .flame {
+            position: absolute;
+            top: -60%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 140%;
+            background: #FFD166;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 5px #FFD166, 0 0 10px #FF9A00, 0 0 15px #FF6B00, 0 0 20px #FF0000;
+            z-index: 4;
+            animation: flicker 0.2s infinite alternate;
+            opacity: 0.9;
+        }
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.8; box-shadow: 0 0 5px #FFD166, 0 0 10px #FF9A00, 0 0 15px #FF6B00, 0 0 20px #FF0000; }
+            100% { transform: translateX(-50%) scale(0.95) rotate(-1deg); opacity: 0.9; box-shadow: 0 0 4px #FFD166, 0 0 8px #FF9A00, 0 0 12px #FF6B00, 0 0 16px #FF0000; }
+        }
+        .candle-placeholder {
+            width: 100%;
+            height: 100%;
+            min-width: 6px;
+            min-height: 15px;
+        }
+
+        /* Responsive general */
+        @media (max-width: 600px) {
+            .card { padding: 20px 15px; }
+            h1 { font-size: 1.2rem; }
+            .cake-container { height: 100px; }
+            .cake-base { font-size: 80px; }
+            .candles-group { top: -20%; }
+            .message-content { font-size: 0.9rem; }
+            .signature { font-size: 1rem; }
+            .footer { font-size: 0.8rem; }
+            .news-ticker { font-size: 0.7rem; }
+        }
+
+        /* Modal de Video */
+        #videoModal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #videoModal video {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 100, 150, 0.5);
+        }
+        #closeVideoBtn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #closeVideoBtn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas -->
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <div class="card">
+            <div class="birthday-hat">🎂</div>
+            <h1>🎉 Wszystkiego najlepszego z okazji urodzin dla najwspanialszego chłopaka w Polsce!</h1>
+            <div class="heart-container">
+                <div class="bear" id="spinningBear">🐻</div>
+                <div class="heart">❤️</div>
+                <div class="birthday-message" id="birthdayMessage">
+                    <p class="message-content" id="messageLine1"></p>
+                    <p class="signature" id="signatureLine">💞Straight from my heart to my Pokiee Wookie 💘💘</p>
+                </div>
+            </div>
+            <!-- Pastel con velas personalizadas formando "24" -->
+            <div class="cake-container">
+                <div class="cake-base">🎂</div>
+                <div class="candles-group">
+                    <!-- Dígito 2 -->
+                    <div class="digit-2">
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                    </div>
+                    <!-- Dígito 4 -->
+                    <div class="digit-4">
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle-placeholder"></div>
+                        <div class="candle"><div class="wick"></div><div class="flame"></div></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Audio oculto -->
+            <audio id="birthdaySong" loop>
+                <source src="https://raw.githubusercontent.com/Franklin732/RecursosM/main/ssstik.io_1753314484616.mp3" type="audio/mpeg">
+                Tu navegador no soporta el audio.
+            </audio>
+            <p class="footer">Made with ❤️ for the most amazing person in the universe</p>
+            <!-- Ticker de noticias -->
+            <div class="news-ticker-container" id="newsTickerContainer">
+                <div id="newsTicker" class="news-ticker"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Video -->
+    <div id="videoModal">
+        <video id="birthdayVideo" controls autoplay>
+            <source src="https://franklin732.github.io/video.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+        <button id="closeVideoBtn">Cerrar</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // === Elementos ===
+            const videoModal = document.getElementById('videoModal');
+            const birthdayVideo = document.getElementById('birthdayVideo');
+            const closeVideoBtn = document.getElementById('closeVideoBtn');
+            const birthdaySong = document.getElementById('birthdaySong');
+            const spinningBear = document.getElementById('spinningBear');
+            const heart = document.querySelector('.heart');
+            const birthdayMessage = document.getElementById('birthdayMessage');
+            const messageLine1 = document.getElementById('messageLine1');
+            const signatureLine = document.getElementById('signatureLine');
+
+            // --- Ticker de noticias ---
+            const newsTicker = document.getElementById('newsTicker');
+            const newsTickerContainer = document.getElementById('newsTickerContainer');
+            const tickerLines = [
+                "🔥 Today isn’t about your birthday, it’s about that throbbing flesh-blade of yours Ɑ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ hungry to collide with mine in a sloppy, savage duel. Two dripping cocks εつⱭ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ hard as defiance, seeking each other like rabid animals, grinding until pleasure isn’t just inevitable, it’s violent. ⚔️🍆💦",
+"💥 Poland should quarantine you for being a walking sin, that body a temple of temptation, that smirk a Molotov cocktail to the imagination, that fat cock Ɑ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞    begging to be owned. And I will own it: tongue mapping every vein, hands gripping like shackles, my voice growling filth as you leak for me. 🔐🍑",
+"📍 If Poland saw the chaos your smile ignites, they’d ban you for public indecency. You don’t walk, you stride, leaving hard-ons in your wake, fantasies exploding like gunfire, every glance at you a death sentence for self-control. 😈🔥👅",
+"💋 Picture this: you pinned beneath me, our sweat-slicked bodies crushing together, cocks rutting like wild beasts. Your hips jerk, desperate for friction, while my lips trace your ear, hissing. You’ll cum untouched just from how bad I want you. 🍆🫦💣",
+"🫦 That swollen, weeping crown of yours? A fucking masterpiece. I’d worship it like a religion, sucking slow, dragging my tongue along the slit to taste your pre-cum, teasing until your thighs shake and you beg to erupt down my throat. 👄🍒💥",
+"🍒 And those balls, heavy, full 🥛, aching, I’d knead them like they hold the cure for my hunger. Feel them tighten, hear you whimper as I suck one into my mouth (っ'ཀ`)っ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞ rolling it gently before biting just to watch you lose it. 👐🖤💦",
+"🎯 I’d torture you perfectly: one hand working your shaft, the other cupping your sac (っ´ཀ`)っ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞ my tongue flicking that maddening spot under your head until you’re dripping, hips bucking, voice raw from screaming my name. 🌊🍆🔥",
+"👑 That fat, flushed tip, glistening, pulsing, is my fucking obsession. I’d throat you to the hilt, let you fuck my face like a flesh-puppet, gagging on you just to feel you twitch. Your precum would paint my tongue like a promise. 💦👅",
+"🎯 Your cock knows it’s mine. It beads up just watching me, as if your body’s already confessing what your mouth won’t:I’ll cum on command if you stare at me like that. 🔥👄",
+"👅 When I swallow you whole (っ´ཀ`)っ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞  your dick convulses, like it’s trying to fuck deeper, breed my throat. I’ll milk you with filthy, wet sounds, lips sealed tight, until you’re sobbing and shooting ropes down my gullet. 🫦🍒",
+"🖤 I crave the way you leak for me, thick, salty drops 🥛 I’d lick off like a starved man. And when you finally erupt? I’d drink every fucking drop, then shove my tongue back into your slit to steal the last tremors. 🍆🌊",
+"🔮 That cockhead, taut, shiny, desperate, is my altar Ɑ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ I’d lap at it like a demon at a feast, slurping your essence until you’re clawing at the sheets, chanting Fuck, fuck, fuck before you burst like a fucking geyser. 💋💥",
+"🎂 I want our cocks smashing together εつⱭ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ slippery with spit and pre-cum, rutting like we’re fighting for dominance. Your dick slapping against mine εつⱭ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ both of us panting, dripping, fucking the air between us until we stain everything with cum. ⚔️🍑💦"
+            ];
+            let currentLineIndex = 0;
+            const displayDuration = 6000;
+            let tickerIntervalId = null;
+
+            function showNextLine() {
+                if (tickerLines.length > 0) {
+                    newsTicker.textContent = tickerLines[currentLineIndex];
+                    newsTicker.style.animation = 'none';
+                    newsTicker.offsetHeight;
+                    newsTicker.style.animation = 'fadeInOut 6s forwards';
+                    currentLineIndex = (currentLineIndex + 1) % tickerLines.length;
+                }
+            }
+            function startTicker() {
+                stopTicker();
+                if (tickerLines.length > 0) {
+                    newsTickerContainer.style.display = 'block';
+                    showNextLine();
+                    tickerIntervalId = setInterval(showNextLine, displayDuration);
+                }
+            }
+            function stopTicker() {
+                if (tickerIntervalId !== null) clearInterval(tickerIntervalId);
+                newsTickerContainer.style.display = 'none';
+                newsTicker.style.animation = 'none';
+                newsTicker.textContent = "";
+            }
+
+            // --- Corazones cayendo ---
+            function createFallingHearts() {
+                const container = document.querySelector('.container');
+                const heartCount = 10;
+                const colors = ['#e74c3c', '#c0392b', '#d35400', '#e67e22'];
+                for (let i = 0; i < heartCount; i++) {
+                    const fallingHeart = document.createElement('div');
+                    fallingHeart.className = 'falling-heart';
+                    fallingHeart.innerHTML = '❤️';
+                    fallingHeart.style.left = Math.random() * 100 + 'vw';
+                    fallingHeart.style.top = '-30px';
+                    const size = (Math.random() * 10) + 15;
+                    fallingHeart.style.fontSize = `${size}px`;
+                    fallingHeart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    fallingHeart.style.opacity = '0';
+                    container.appendChild(fallingHeart);
+                    const duration = Math.random() * 10000 + 15000;
+                    const animation = fallingHeart.animate([
+                        { transform: 'translateY(0)', opacity: Math.random() * 0.5 + 0.5 },
+                        { transform: `translateY(${window.innerHeight + 100}px) translateX(${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], { duration, easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)' });
+                    animation.onfinish = () => fallingHeart.remove();
+                }
+            }
+
+            // --- Partículas ---
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 30;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 5 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    const delay = Math.random() * 15;
+                    const duration = 15 + Math.random() * 10;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // --- Cerrar manualmente ---
+            closeVideoBtn.addEventListener('click', () => {
+                videoModal.style.display = 'none';
+                birthdayVideo.pause();
+                birthdayVideo.currentTime = 0;
+                startAnimations();
+            });
+
+            // --- Cuando el video termina → cerrar y empezar animaciones ---
+            birthdayVideo.addEventListener('ended', () => {
+                videoModal.style.display = 'none';
+                startAnimations();
+            });
+
+            // --- Iniciar animaciones ---
+            function startAnimations() {
+                birthdaySong.play().catch(err => console.error("Error al reproducir música:", err));
+                spinningBear.classList.add('spinning');
+                startTicker();
+                setTimeout(() => heart.classList.add('shoot'), 1000);
+                setTimeout(() => {
+                    birthdayMessage.classList.add('show');
+                    const fullMessage = "Happy birthday, my pookie wookie from the universe and nearby galaxies! 🥂✨ Today I celebrate the day the world became 1000% cuter (and a little more chaotic 😜). I hope your day is full of cake, cuddles, memes, and that I'm on your list of favorite gifts. You're hotter than a supernova wrapped in lava wearing leather and still sweeter than morning coffee and more reliable than stable Wi-Fi 💘.";
+                    let i = 0;
+                    const speed = 60;
+                    function typeWriter() {
+                        if (i < fullMessage.length) {
+                            messageLine1.innerHTML += fullMessage.charAt(i);
+                            i++;
+                            setTimeout(typeWriter, speed);
+                        } else {
+                            setTimeout(() => signatureLine.classList.add('show'), 500);
+                        }
+                    }
+                    typeWriter();
+                }, 1500);
+                createFallingHearts();
+                setInterval(createFallingHearts, 3000);
+                createParticles();
+            }
+        });
+    </script>
+</body>
+</html>
