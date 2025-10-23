@@ -398,20 +398,7 @@
             border-radius: 15px;
             box-shadow: 0 0 30px rgba(255, 100, 150, 0.5);
         }
-        #closeVideoBtn {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        #closeVideoBtn:hover {
-            background: #c0392b;
-        }
+      
     </style>
 </head>
 <body>
@@ -509,7 +496,7 @@
             <source src="https://franklin732.github.io/videogato.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
-        <button id="closeVideoBtn">Close</button>
+        
     </div>
 
     <script>
@@ -616,13 +603,7 @@
                 }
             }
 
-            // --- Cerrar manualmente ---
-            closeVideoBtn.addEventListener('click', () => {
-                videoModal.style.display = 'none';
-                birthdayVideo.pause();
-                birthdayVideo.currentTime = 0;
-                startAnimations();
-            });
+           
 
             // --- Cuando el video termina → cerrar y empezar animaciones ---
             birthdayVideo.addEventListener('ended', () => {
