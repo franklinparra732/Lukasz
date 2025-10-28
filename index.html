@@ -22,29 +22,6 @@
             padding: 20px;
             position: relative;
         }
-        /* Partículas flotantes */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            box-shadow: 0 0 10px #fff, 0 0 20px #fff;
-            animation: float 15s infinite linear;
-        }
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
-        }
 
         /* --- GATOS BAILANDO--- */
         .cat-decor {
@@ -147,26 +124,7 @@
             margin-top: 20px;
             font-size: 0.9rem;
         }
-        .news-ticker-container {
-            margin-top: 15px;
-            padding: 10px 0;
-            display: none;
-        }
-        .news-ticker {
-            font-style: italic;
-            color: #ffafcc;
-            font-size: 0.9rem;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
-            min-height: 1.5em;
-            opacity: 0;
-            animation: fadeInOut 6s forwards;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(10px); }
-            20% { opacity: 1; transform: translateY(0); }
-            80% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-10px); }
-        }
+      
         .birthday-hat {
             position: absolute;
             top: -40px;
@@ -375,7 +333,6 @@
             .message-content { font-size: 0.9rem; }
             .signature { font-size: 1rem; }
             .footer { font-size: 0.8rem; }
-            .news-ticker { font-size: 0.7rem; }
         }
 
         /* Modal de Video */
@@ -415,9 +372,6 @@
     </style>
 </head>
 <body>
-    <!-- Partículas -->
-    <div class="particles" id="particles"></div>
-
     <div class="container">
         <!-- GATOS BAILANDO (TU DISEÑO PERSONALIZADO) -->
         <div class="cat-decor cat1">
@@ -492,14 +446,10 @@
             </div>
             <!-- Audio oculto -->
             <audio id="birthdaySong" loop>
-            <source src="https://github.com/franklinparra732/Media/raw/refs/heads/main/audio1.mp3" type="audio/mpeg">
-            Tu navegador no soporta el audio.
+                <source src="https://github.com/franklinparra732/Media/raw/refs/heads/main/audio1.mp3" type="audio/mpeg">
+                Tu navegador no soporta el audio.
             </audio>
             <p class="footer">Made with ❤️ for the most amazing person in the universe</p>
-            <!-- Ticker de noticias -->
-            <div class="news-ticker-container" id="newsTickerContainer">
-                <div id="newsTicker" class="news-ticker"></div>
-            </div>
         </div>
     </div>
 
@@ -524,52 +474,6 @@
             const birthdayMessage = document.getElementById('birthdayMessage');
             const messageLine1 = document.getElementById('messageLine1');
             const signatureLine = document.getElementById('signatureLine');
-
-            // --- Ticker de noticias ---
-            const newsTicker = document.getElementById('newsTicker');
-            const newsTickerContainer = document.getElementById('newsTickerContainer');
-            const tickerLines = [
-                "🔥 Today isn’t about your birthday, it’s about that throbbing flesh-blade of yours Ɑ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ hungry to collide with mine in a sloppy, savage duel. Two dripping cocks εつⱭ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ hard as defiance, seeking each other like rabid animals, grinding until pleasure isn’t just inevitable, it’s violent. ⚔️🍆💦",
-"💥 Poland should quarantine you for being a walking sin, that body a temple of temptation, that smirk a Molotov cocktail to the imagination, that fat cock Ɑ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞    begging to be owned. And I will own it: tongue mapping every vein, hands gripping like shackles, my voice growling filth as you leak for me. 🔐🍑",
-"📍 If Poland saw the chaos your smile ignites, they’d ban you for public indecency. You don’t walk, you stride, leaving hard-ons in your wake, fantasies exploding like gunfire, every glance at you a death sentence for self-control. 😈🔥👅",
-"💋 Picture this: you pinned beneath me, our sweat-slicked bodies crushing together, cocks rutting like wild beasts. Your hips jerk, desperate for friction, while my lips trace your ear, hissing. You’ll cum untouched just from how bad I want you. 🍆🫦💣",
-"🫦 That swollen, weeping crown of yours? A fucking masterpiece. I’d worship it like a religion, sucking slow, dragging my tongue along the slit to taste your pre-cum, teasing until your thighs shake and you beg to erupt down my throat. 👄🍒💥",
-"🍒 And those balls, heavy, full 🥛, aching, I’d knead them like they hold the cure for my hunger. Feel them tighten, hear you whimper as I suck one into my mouth (っ'ཀ`)っ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞ rolling it gently before biting just to watch you lose it. 👐🖤💦",
-"🎯 I’d torture you perfectly: one hand working your shaft, the other cupping your sac (っ´ཀ`)っ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞ my tongue flicking that maddening spot under your head until you’re dripping, hips bucking, voice raw from screaming my name. 🌊🍆🔥",
-"👑 That fat, flushed tip, glistening, pulsing, is my fucking obsession. I’d throat you to the hilt, let you fuck my face like a flesh-puppet, gagging on you just to feel you twitch. Your precum would paint my tongue like a promise. 💦👅",
-"🎯 Your cock knows it’s mine. It beads up just watching me, as if your body’s already confessing what your mouth won’t:I’ll cum on command if you stare at me like that. 🔥👄",
-"👅 When I swallow you whole (っ´ཀ`)っ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞  your dick convulses, like it’s trying to fuck deeper, breed my throat. I’ll milk you with filthy, wet sounds, lips sealed tight, until you’re sobbing and shooting ropes down my gullet. 🫦🍒",
-"🖤 I crave the way you leak for me, thick, salty drops 🥛 I’d lick off like a starved man. And when you finally erupt? I’d drink every fucking drop, then shove my tongue back into your slit to steal the last tremors. 🍆🌊",
-"🔮 That cockhead, taut, shiny, desperate, is my altar Ɑ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ I’d lap at it like a demon at a feast, slurping your essence until you’re clawing at the sheets, chanting Fuck, fuck, fuck before you burst like a fucking geyser. 💋💥",
-"🎂 I want our cocks smashing together εつⱭ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ slippery with spit and pre-cum, rutting like we’re fighting for dominance. Your dick slapping against mine εつⱭ͞ ̶͞ ̶͞ ̶͞ ﻝﮞ͞ both of us panting, dripping, fucking the air between us until we stain everything with cum. ⚔️🍑💦"
-            ];
-            let currentLineIndex = 0;
-            const displayDuration = 6000;
-            let tickerIntervalId = null;
-
-            function showNextLine() {
-                if (tickerLines.length > 0) {
-                    newsTicker.textContent = tickerLines[currentLineIndex];
-                    newsTicker.style.animation = 'none';
-                    newsTicker.offsetHeight;
-                    newsTicker.style.animation = 'fadeInOut 6s forwards';
-                    currentLineIndex = (currentLineIndex + 1) % tickerLines.length;
-                }
-            }
-            function startTicker() {
-                stopTicker();
-                if (tickerLines.length > 0) {
-                    newsTickerContainer.style.display = 'block';
-                    showNextLine();
-                    tickerIntervalId = setInterval(showNextLine, displayDuration);
-                }
-            }
-            function stopTicker() {
-                if (tickerIntervalId !== null) clearInterval(tickerIntervalId);
-                newsTickerContainer.style.display = 'none';
-                newsTicker.style.animation = 'none';
-                newsTicker.textContent = "";
-            }
 
             // --- Corazones cayendo ---
             function createFallingHearts() {
@@ -596,26 +500,6 @@
                 }
             }
 
-            // --- Partículas ---
-            function createParticles() {
-                const particlesContainer = document.getElementById('particles');
-                const particleCount = 30;
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    const size = Math.random() * 5 + 2;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${Math.random() * 100}%`;
-                    particle.style.top = `${Math.random() * 100}%`;
-                    const delay = Math.random() * 15;
-                    const duration = 15 + Math.random() * 10;
-                    particle.style.animationDelay = `${delay}s`;
-                    particle.style.animationDuration = `${duration}s`;
-                    particlesContainer.appendChild(particle);
-                }
-            }
-
             // --- Cerrar manualmente ---
             closeVideoBtn.addEventListener('click', () => {
                 videoModal.style.display = 'none';
@@ -634,7 +518,6 @@
             function startAnimations() {
                 birthdaySong.play().catch(err => console.error("Error al reproducir música:", err));
                 spinningBear.classList.add('spinning');
-                startTicker();
                 setTimeout(() => heart.classList.add('shoot'), 1000);
                 setTimeout(() => {
                     birthdayMessage.classList.add('show');
@@ -654,7 +537,6 @@
                 }, 1500);
                 createFallingHearts();
                 setInterval(createFallingHearts, 3000);
-                createParticles();
             }
         });
     </script>
